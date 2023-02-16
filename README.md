@@ -17,7 +17,7 @@ First step in using this plugin is to call the plugin to open the authentication
 
 ---
 
-## Step two
+## Step two (optional)
 
 ---
 
@@ -39,6 +39,8 @@ set the content of this file to
     // set the text of page equal to a path to a page in your app
   </script>
 </p>
+
+N/B: You can ignore this step and configure the redirect from your server
 ```
 
 ---
