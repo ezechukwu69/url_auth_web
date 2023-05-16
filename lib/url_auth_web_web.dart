@@ -47,9 +47,7 @@ class UrlAuthWebWeb extends UrlAuthWebPlatform {
       {Map<String, String>? searchParams}) async {
     var parsedUrl = Uri.parse(url);
     if (searchParams != null) {
-      for (var MapEntry(:key, :value) in searchParams.entries) {
-        parsedUrl.queryParameters.addAll({key: value});
-      }
+      parsedUrl.replace(queryParameters: searchParams);
     }
     window.history.pushState(state, name, parsedUrl.toString());
   }
@@ -59,9 +57,7 @@ class UrlAuthWebWeb extends UrlAuthWebPlatform {
       {Map<String, String>? searchParams}) async {
     var parsedUrl = Uri.parse(url);
     if (searchParams != null) {
-      for (var MapEntry(:key, :value) in searchParams.entries) {
-        parsedUrl.queryParameters.addAll({key: value});
-      }
+      parsedUrl.replace(queryParameters: searchParams);
     }
     window.history.replaceState(state, name, parsedUrl.toString());
   }
