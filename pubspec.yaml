@@ -1,6 +1,6 @@
 name: url_auth_web
 description: Flutter OAUTH2 plugin for web
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/ezechukwu69/url_auth_web
 
 environment:
