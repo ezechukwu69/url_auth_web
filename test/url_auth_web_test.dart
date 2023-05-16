@@ -18,6 +18,19 @@ class MockUrlAuthWebPlatform
   @override
   Future<void> launch(String url,
       {String? features, String name = "_blank"}) async {}
+
+  @override
+  Future<String?> location() async {
+    return "https://example.com";
+  }
+
+  @override
+  Future<void> pushState(state, String name, String url,
+      {Map<String, String>? searchParams}) async {}
+
+  @override
+  Future<void> replaceState(state, String name, String url,
+      {Map<String, String>? searchParams}) async {}
 }
 
 void main() {
@@ -43,11 +56,35 @@ void main() {
     await urlAuthWebPlugin.launch('https://example.com');
   });
 
+  test('replaceState', () async {
+    UrlAuthWeb urlAuthWebPlugin = UrlAuthWeb();
+    MockUrlAuthWebPlatform fakePlatform = MockUrlAuthWebPlatform();
+    UrlAuthWebPlatform.instance = fakePlatform;
+
+    await urlAuthWebPlugin.replaceState("", "", 'https://example.com');
+  });
+
+  test('pushState', () async {
+    UrlAuthWeb urlAuthWebPlugin = UrlAuthWeb();
+    MockUrlAuthWebPlatform fakePlatform = MockUrlAuthWebPlatform();
+    UrlAuthWebPlatform.instance = fakePlatform;
+
+    await urlAuthWebPlugin.pushState("", "", 'https://example.com');
+  });
+
   test('getQueryParams', () async {
     UrlAuthWeb urlAuthWebPlugin = UrlAuthWeb();
     MockUrlAuthWebPlatform fakePlatform = MockUrlAuthWebPlatform();
     UrlAuthWebPlatform.instance = fakePlatform;
 
     expect(await urlAuthWebPlugin.getQueryParams(), {'value': '42'});
+  });
+
+  test('location', () async {
+    UrlAuthWeb urlAuthWebPlugin = UrlAuthWeb();
+    MockUrlAuthWebPlatform fakePlatform = MockUrlAuthWebPlatform();
+    UrlAuthWebPlatform.instance = fakePlatform;
+
+    expect(await urlAuthWebPlugin.location(), "https://example.com");
   });
 }

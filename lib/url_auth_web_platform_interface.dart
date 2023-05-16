@@ -30,4 +30,12 @@ abstract class UrlAuthWebPlatform extends PlatformInterface {
   Future<void> launch(String url, {String? features, String name = "_blank"});
 
   Future<Map<String, dynamic>> getQueryParams();
+
+  Future<void> pushState(dynamic state, String name, String url,
+      {Map<String, String>? searchParams});
+
+  Future<void> replaceState(dynamic state, String name, String url,
+      {Map<String, String>? searchParams});
+
+  Future<String?> location();
 }

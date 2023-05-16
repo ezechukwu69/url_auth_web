@@ -38,4 +38,31 @@ class MethodChannelUrlAuthWeb extends UrlAuthWebPlatform {
       'name': name,
     });
   }
+
+  @override
+  Future<void> pushState(dynamic state, String name, String url,
+      {Map<String, String>? searchParams}) {
+    return methodChannel.invokeMethod("pushState", {
+      'state': state,
+      'name': name,
+      'url': url,
+      'searchParams': searchParams
+    });
+  }
+
+  @override
+  Future<void> replaceState(dynamic state, String name, String url,
+      {Map<String, String>? searchParams}) {
+    return methodChannel.invokeMethod("replaceState", {
+      'state': state,
+      'name': name,
+      'url': url,
+      'searchParams': searchParams
+    });
+  }
+
+  @override
+  Future<String?> location() {
+    return methodChannel.invokeMethod<String?>("location");
+  }
 }

@@ -21,4 +21,20 @@ class UrlAuthWeb {
   Future<Map<String, dynamic>> getQueryParams() async {
     return UrlAuthWebPlatform.instance.getQueryParams();
   }
+
+  Future<void> pushState(dynamic state, String name, String url,
+      {Map<String, String>? searchParams}) {
+    return UrlAuthWebPlatform.instance
+        .pushState(state, name, url, searchParams: searchParams);
+  }
+
+  Future<void> replaceState(dynamic state, String name, String url,
+      {Map<String, String>? searchParams}) {
+    return UrlAuthWebPlatform.instance
+        .replaceState(state, name, url, searchParams: searchParams);
+  }
+
+  Future<String?> location() {
+    return UrlAuthWebPlatform.instance.location();
+  }
 }

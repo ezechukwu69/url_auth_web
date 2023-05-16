@@ -14,6 +14,8 @@ void main() {
         return '42';
       } else if (methodCall.method == 'getQueryParams') {
         return <String, dynamic>{'value': '42'};
+      } else if (methodCall.method == 'location') {
+        return "https://example.com";
       } else {}
     });
   });
@@ -33,5 +35,17 @@ void main() {
   test('getQueryParams', () async {
     Map<Object?, Object?> data = await platform.getQueryParams();
     expect(data['value'], '42');
+  });
+
+  test("location", () async {
+    expect(await platform.location(), "https://example.com");
+  });
+
+  test("replaceState", () async {
+    await platform.replaceState("", "", "");
+  });
+
+  test("pushState", () async {
+    await platform.pushState("", "", "");
   });
 }

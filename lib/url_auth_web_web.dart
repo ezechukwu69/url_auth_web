@@ -36,4 +36,33 @@ class UrlAuthWebWeb extends UrlAuthWebPlatform {
       {String? features, String name = "_blank"}) async {
     window.open(url, name, features);
   }
+
+  @override
+  Future<String?> location() async {
+    return Uri.base.toString();
+  }
+
+  @override
+  Future<void> pushState(state, String name, String url,
+      {Map<String, String>? searchParams}) async {
+    var parsedUrl = Uri.parse(url);
+    if (searchParams != null) {
+      for (var MapEntry(:key, :value) in searchParams.entries) {
+        parsedUrl.queryParameters.addAll({key: value});
+      }
+    }
+    window.history.pushState(state, name, parsedUrl.toString());
+  }
+
+  @override
+  Future<void> replaceState(state, String name, String url,
+      {Map<String, String>? searchParams}) async {
+    var parsedUrl = Uri.parse(url);
+    if (searchParams != null) {
+      for (var MapEntry(:key, :value) in searchParams.entries) {
+        parsedUrl.queryParameters.addAll({key: value});
+      }
+    }
+    window.history.replaceState(state, name, parsedUrl.toString());
+  }
 }
